@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+from datetime import datetime, timezone
 
 Base = declarative_base()
 
@@ -12,3 +13,5 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=True)
     nickname = Column(String, nullable=True)
     gender = Column(String, nullable=True)  # 男/女/未知
+    is_online = Column(Boolean, default=False)  # 在线状态
+    last_seen = Column(DateTime, nullable=True)  # 最后在线时间

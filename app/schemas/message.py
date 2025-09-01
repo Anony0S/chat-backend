@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 from typing import Optional
 from datetime import datetime
 
@@ -15,5 +15,9 @@ class MessageOut(BaseModel):
     msg_type: str
     created_at: datetime
     is_read: bool
+
+    @field_serializer('created_at')
+    def serialize_created_at(self, created_at: datetime) -> str:
+        return created_at.isoformat()
 
     model_config = {"from_attributes": True}

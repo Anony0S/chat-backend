@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_serializer
 from typing import Optional
 from datetime import datetime
 
@@ -24,6 +24,10 @@ class FriendBase(BaseModel):
     friend_id: int
     status: str
     created_at: datetime
+
+    @field_serializer('created_at')
+    def serialize_created_at(self, created_at: datetime) -> str:
+        return created_at.isoformat()
 
     model_config = {"from_attributes": True}
 
