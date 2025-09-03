@@ -146,12 +146,17 @@ async def websocket_chat(websocket: WebSocket, token: str, db: Session = Depends
             # 普通消息处理
             to_id = msg.get("to_id")
             content = msg.get("content")
+            image_url = msg.get("image_url")
+            image_name = msg.get("image_name")
+            
             # 存储消息
             message = Message(
                 from_id=user.id,
                 to_id=to_id,
                 content=content,
                 msg_type=msg_type,
+                image_url=image_url,
+                image_name=image_name,
                 created_at=datetime.utcnow(),
                 is_read=False
             )
@@ -166,6 +171,8 @@ async def websocket_chat(websocket: WebSocket, token: str, db: Session = Depends
                     "to_id": to_id,
                     "content": content,
                     "msg_type": msg_type,
+                    "image_url": image_url,
+                    "image_name": image_name,
                     "created_at": message.created_at.isoformat(),
                     "id": message.id
                 }))

@@ -4,15 +4,19 @@ from datetime import datetime
 
 class MessageSend(BaseModel):
     to_id: int
-    content: str
+    content: Optional[str] = None
     msg_type: Optional[str] = "text"
+    image_url: Optional[str] = None
+    image_name: Optional[str] = None
 
 class MessageOut(BaseModel):
     id: int
     from_id: int
     to_id: int
-    content: str
+    content: Optional[str] = None
     msg_type: str
+    image_url: Optional[str] = None
+    image_name: Optional[str] = None
     created_at: datetime
     is_read: bool
 
