@@ -20,3 +20,6 @@ dependencies = [
     "typing-inspection>=0.4.1",
     "wheel>=0.45.1",
 ]
+
+[tool.setuptools]
+packages = ["app"]
