@@ -155,3 +155,6 @@ Thumbs.db
 
 # FastAPI specific
 .pytest_cache/
+
+# Uploads directory (user uploaded files should not be committed)
+uploads/
