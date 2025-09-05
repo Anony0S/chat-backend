@@ -69,8 +69,8 @@ async def upload_image(
             detail=f"文件保存失败: {str(e)}"
         )
     
-    # 返回文件信息
-    image_url = f"/uploads/images/{unique_filename}"
+    # 返回文件信息 - 只返回相对路径
+    image_url = f"uploads/images/{unique_filename}"
     
     return {
         "image_url": image_url,
@@ -88,8 +88,8 @@ async def delete_image(
     """
     删除图片文件
     """
-    # 验证图片URL格式
-    if not image_url.startswith("/uploads/images/"):
+    # 验证图片URL格式 - 支持相对路径和绝对路径
+    if not (image_url.startswith("uploads/images/") or image_url.startswith("/uploads/images/")):
         raise HTTPException(
             status_code=400, 
             detail="无效的图片URL"
